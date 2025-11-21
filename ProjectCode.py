@@ -100,4 +100,63 @@ def spawn_enemies():
 
         return [Enemy(random.randint(0, screen_w - 50), random.randint(-1000, -200)) for _ in range(enemy_num)]
 
+def display_start_screen():
+
+    screen.fill(bl)
+
+    title_text = large_font.render("Galactica", True, gr)
+
+    instructions = [
+
+    "Welcome to Galactica!",
+
+    "Navigate using Left/Right arrows.",
+
+    "Press Space to shoot.",
+
+    "Reach 1000 points to win.",
+
+    "Press Enter to Start"
+
+    ]
+
+    screen.blit(title_text, (screen_w // 2 - title_text.get_width() // 2, screen_h // 4))
+
+
+
+    y_offset = screen_h // 3
+
+    for line in instructions:
+
+        instruction_text = font.render(line, True, wh)
+
+        screen.blit(instruction_text, (screen_w // 2 - instruction_text.get_width() // 2, y_offset))
+
+        y_offset += 40
+
+
+
+    pygame.display.flip()
+
+
+
+    waiting = True
+
+    while waiting:
+
+        for event in pygame.event.get():
+
+            if event.type == pygame.QUIT:
+
+                pygame.quit()
+
+                return
+
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+
+                waiting = False
+
+                return
+
+
 
