@@ -77,3 +77,21 @@ class Bullet:
     def off_screen(self):
 
         return self.rect.top < 0
+
+class Enemy:
+
+    def __init__(self, x, y):
+
+        self.rect = pygame.Rect(x, y, 50, 40)
+
+
+
+    def update(self):
+
+        self.rect.y += enemy_s
+
+
+
+    def off_screen(self):
+
+        return self.rect.top > screen_h
