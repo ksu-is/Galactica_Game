@@ -29,6 +29,15 @@ wh = (255, 255, 255)
 
 red = (255, 0, 0)
 
+
 bl = (0, 0, 0)
 
 gr = (0, 255, 0)
+
+screen = pygame.display.set_mode((screen_w, screen_h))
+
+pygame.display.set_caption("Galactica")
+
+font = pygame.font.SysFont("Times New Roman", 24)
+
+large_font = pygame.font.SysFont("Times New Roman", 48)
