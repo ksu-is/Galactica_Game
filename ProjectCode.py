@@ -41,3 +41,21 @@ pygame.display.set_caption("Galactica")
 font = pygame.font.SysFont("Times New Roman", 24)
 
 large_font = pygame.font.SysFont("Times New Roman", 48)
+
+class Player:
+
+    def __init__(self):
+
+        self.rect = pygame.Rect(screen_w // 2 - 25, screen_h - 50, 50, 40)
+
+
+
+    def move(self, keys):
+
+        if keys[pygame.K_LEFT] and self.rect.left > 0:
+
+            self.rect.x -= play_s
+
+        if keys[pygame.K_RIGHT] and self.rect.right < screen_w:
+
+            self.rect.x += play_s
