@@ -95,3 +95,9 @@ class Enemy:
     def off_screen(self):
 
         return self.rect.top > screen_h
+
+def spawn_enemies():
+
+        return [Enemy(random.randint(0, screen_w - 50), random.randint(-1000, -200)) for _ in range(enemy_num)]
+
+
