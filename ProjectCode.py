@@ -59,3 +59,21 @@ class Player:
         if keys[pygame.K_RIGHT] and self.rect.right < screen_w:
 
             self.rect.x += play_s
+
+class Bullet:
+
+    def __init__(self, x, y):
+
+        self.rect = pygame.Rect(x - 2, y - 10, 5, 10)
+
+
+
+    def update(self):
+
+        self.rect.y -= bullet_s
+
+
+
+    def off_screen(self):
+
+        return self.rect.top < 0
