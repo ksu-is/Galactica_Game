@@ -159,4 +159,152 @@ def display_start_screen():
                 return
 
 
+def run_game():
 
+    player = Player()
+
+    bullets = []
+
+    enemies = spawn_enemies()
+
+
+
+    score = 0
+
+    clock = pygame.time.Clock()
+
+
+
+    while True:
+
+        clock.tick(fps)
+
+        screen.fill(bl)
+
+
+
+        for event in pygame.event.get():
+
+            if event.type == pygame.QUIT:
+
+                pygame.quit()
+
+                return
+
+            if event.type == pygame.KEYDOWN:
+
+                if event.key == pygame.K_SPACE:
+
+                    bullets.append(Bullet(player.rect.centerx, player.rect.top))
+
+                if event.key == pygame.K_ESCAPE:
+
+                    pygame.quit()
+
+                    return
+
+
+
+        for event in pygame.event.get():
+
+            if event.type == pygame.QUIT:
+
+                pygame.quit()
+
+                return
+
+            if event.type == pygame.KEYDOWN:
+
+                if event.key == pygame.K_SPACE:
+
+                    bullets.append(Bullet(player.rect.centerx, player.rect.top))
+
+
+
+        keys = pygame.key.get_pressed()
+
+        player.move(keys)
+
+
+
+        for bullet in list(bullets):
+
+            bullet.update()
+
+            if bullet.off_screen():
+
+                bullets.remove(bullet)
+
+
+
+        for enemy in list(enemies):
+
+            enemy.update()
+
+            if enemy.off_screen():
+
+                enemy.rect.top = 0
+
+                enemy.rect.x = random.randint(0, screen_w - 50)
+
+
+
+        for bullet in list(bullets):
+
+            for enemy in list(enemies):
+
+                if bullet.rect.colliderect(enemy.rect):
+
+                    bullets.remove(bullet)
+
+                    enemies.remove(enemy)
+
+                    score += 10
+
+                    break
+
+
+
+        if len(enemies) == 0:
+
+            enemies = spawn_enemies()
+
+
+
+        for enemy in enemies:
+
+            if player.rect.colliderect(enemy.rect):
+
+                draw_game_over_screen(score)
+
+                return
+
+
+
+        if score >= w_score:
+
+            display_win_screen(score)
+
+            return
+
+
+
+        pygame.draw.rect(screen, wh, player.rect)
+
+        for bullet in bullets:
+
+            pygame.draw.rect(screen, wh, bullet.rect)
+
+        for enemy in enemies:
+
+            pygame.draw.rect(screen, red, enemy.rect)
+
+
+
+        score_text = font.render(f'Score: {score}', True, wh)
+
+        screen.blit(score_text, (10, 10))
+
+
+
+        pygame.display.flip()
