@@ -405,3 +405,7 @@ def display_win_screen(score):
                     pygame.quit()
 
                     return
+
+display_start_screen()
+
+run_game()
