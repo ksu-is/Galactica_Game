@@ -12,3 +12,10 @@
 - [x] Continue working on code 
 - [x] Commit beginning code 
 - [x] Use pygame to get game working
+
+## Sprint 3
+- [x] Organize code 
+- [x] Create functions that allow for game to run
+- [x] Create PowerPoint slide to present 
+- [x] Have basic program running
+- [x] Complete program
