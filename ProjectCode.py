@@ -357,3 +357,51 @@ def draw_game_over_screen(score):
                     pygame.quit()
 
                     return
+
+def display_win_screen(score):
+
+    screen.fill(bl)
+
+    win_text = large_font.render("You Win!", True, gr)
+
+    score_text = font.render(f"Final Score: {score}", True, wh)
+
+    restart_text = font.render("Press 'R' to Restart or 'Q' to Quit", True, wh)
+
+
+
+    screen.blit(win_text, (screen_w // 2 - win_text.get_width() // 2, screen_h // 4))
+
+    screen.blit(score_text, (screen_w // 2 - score_text.get_width() // 2, screen_h // 2))
+
+    screen.blit(restart_text, (screen_w // 2 - restart_text.get_width() // 2, screen_h // 1.5))
+
+
+
+    pygame.display.flip()
+
+
+
+    while True:
+
+        for event in pygame.event.get():
+
+            if event.type == pygame.QUIT:
+
+                pygame.quit()
+
+                return
+
+            if event.type == pygame.KEYDOWN:
+
+                if event.key == pygame.K_r:
+
+                    run_game()
+
+                    return
+
+                elif event.key == pygame.K_q:
+
+                    pygame.quit()
+
+                    return
